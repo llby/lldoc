@@ -12,21 +12,9 @@ class VertController < ApplicationController
   end
 
   def show
-    # dbからパスを取得する
-#    @map = Map.find(params[:id])
-#    @contents = File.read("#{DEFAULT_PATH}/#{@map.path}/#{@map.name}.txt")
-
-    # list["full"]から、DEFAULT_PATHを取る
-    @path = params[:path]
-    @content = File.read("#{DEFAULT_PATH}/#{params[:path]}.txt")
-
-
-    # 1行目を削る
-#    @content = ""
-#    IO.foreach("file") do |line|
-#      out << line if line != xxx
-#    end
-
+    @path_f = params[:path_name]
+    @path = File.dirname(@path_f)
+    @body = File.read("#{DEFAULT_PATH}/#{@path_f}.txt")
   end
 
   def new
@@ -34,24 +22,27 @@ class VertController < ApplicationController
   end
 
   def edit
-    @path = params[:path]
+    @path_f = params[:path_name]
+    @name = File.basename("#{DEFAULT_PATH}/#{@path_f}.txt", suffix = '.txt')
+    @body = File.read("#{DEFAULT_PATH}/#{@path_f}.txt")
+    @path = File.dirname(@path_f)
   end
 
   def create
     vert_param = params.require(:vert).permit(:name, :body, :path)
-    @map = Map.new()
-    @map.project_id = 1
-    @map.path = vert_param[:path]
-    @map.name = vert_param[:name]
-    @map.save
     File.open("#{DEFAULT_PATH}/#{vert_param[:path]}/#{vert_param[:name]}.txt", 'w'){|f|
-      f.puts @map.id
       f.write vert_param[:body]
     }
     redirect_to maps_path
   end
 
-
-
+  def update
+    # TODO: 繝輔ぃ繧､繝ｫ縺悟ｭ伜惠縺励↑縺�蝣ｴ蜷医�ｯ繧ｨ繝ｩ繝ｼ縺ｫ縺吶ｋ
+    vert_param = params.require(:vert).permit(:name, :body, :path)
+    File.open("#{DEFAULT_PATH}/#{vert_param[:path]}/#{vert_param[:name]}.txt", 'w'){|f|
+      f.write vert_param[:body]
+    }
+    redirect_to maps_path
+  end
 
 end

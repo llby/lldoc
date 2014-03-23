@@ -1,10 +1,14 @@
 Lldoc::Application.routes.draw do
 
+  resources :samples
+
 #  get "vert/ls"
 #  get "vert/mkdir"
    get 'vert/index/:path' => 'vert#index'
    get 'vert/new/:path' => 'vert#new'
-   get 'vert/:path' => 'vert#show'
+   get 'vert/edit/:path_name' => 'vert#edit'
+  post 'vert/update' => 'vert#update'
+   get 'vert/:path_name' => 'vert#show'
   resources :vert
   resources :maps do
     collection do

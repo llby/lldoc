@@ -1,9 +1,8 @@
 <h1>Vert#show</h1>
 
-<p><%= @path %></p>
+<p><%= @path_f %></p>
 
+<%= markdown(@body) %>
 
-<%= markdown(@content) %>
-
-
-<%= link_to 'Back', "/vert/index/#{ERB::Util.url_encode(File.dirname(@path))}" %>
+<%= link_to 'Edit', "/vert/edit/#{ERB::Util.url_encode(@path_f)}" %> |
+<%= link_to 'Back', "/vert/index/#{ERB::Util.url_encode(@path)}" %>

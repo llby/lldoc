@@ -1,0 +1,11 @@
+<h1>Editing vert</h1>
+
+<%= form_tag('/vert/update', :method => :post, :class => 'form-inline') do |f| %>
+  <%= render 'form' %>
+  <div class="actions">
+    <%= submit_tag "更新", :class => 'btn btn-primary btn-sm' %>
+  </div>
+<% end %>
+
+<%= link_to 'Cancel', "/vert/#{ERB::Util.url_encode(@path_f)}" %>
+<%# link_to 'Back', "/vert/index/#{ERB::Util.url_encode(@path)}" %>
