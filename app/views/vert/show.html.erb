@@ -1,0 +1,9 @@
+<h1>Vert#show</h1>
+
+<p><%= @path %></p>
+
+
+<%= markdown(@content) %>
+
+
+<%= link_to 'Back', "/vert/index/#{ERB::Util.url_encode(File.dirname(@path))}" %>

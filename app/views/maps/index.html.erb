@@ -1,0 +1,67 @@
+<h1>MAP</h1>
+
+<%
+
+  lists   = []
+  lists   << { "name" => "root", "col" => 0, "full" => "/" }
+  lists   += make_tree( @maps )
+  max_col = get_max_col( lists )
+
+%>
+
+<script type="text/javascript">
+  function set_path(path){
+    document.getElementById("dir_path").value = path;
+  }
+  function set_form(obj){
+    if(obj.value == 0){
+      document.getElementById("name_div").style.display = "";
+      document.getElementById("path_msg").innerHTML = "に";
+    }else{
+      document.getElementById("name_div").style.display = "none";
+      document.getElementById("path_msg").innerHTML = "を";
+    }
+  }
+</script>
+
+<%= form_tag('/maps/dir', :method => :post, :class => 'form-inline') do |f| %>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="input-group input-group-sm">
+        <%= text_field :dir, :path, :size => 30, :readonly => true, :class => 'form-control' %>
+        <span id="path_msg" class="input-group-addon">に</span>
+      </div>
+    </div>
+    <div id="name_div" class="col-sm-2">
+      <div class="input-group input-group-sm">
+        <%= text_field :dir, :name, :size => 12, :class => 'form-control ' %>
+        <span id="name_msg" class="input-group-addon">を</span>
+      </div>
+    </div>
+    <%= select     :dir, :command, @commands, {:class => 'form-control'}, {:onchange => "set_form(this)"} %>
+    <%= submit_tag "する", :class => 'btn btn-primary btn-sm' %>
+  </div>
+<% end %>
+
+<br>
+<br>
+
+<div style="height:400px; width:60%; overflow-y:scroll;">
+<table class="table table-striped table-hover table-condensed ">
+  <tbody>
+    <% lists.each do |list| %>
+      <tr>
+        <%= raw(make_col_front(max_col, list)) %>
+        <td>
+          <button type="button" class="btn btn-info" onclick=set_path("<%= list["full"] %>")>
+            <%= list["name"] %>
+          </button>
+          <a href="vert/index/<%= ERB::Util.url_encode(list["full"]) %>">＋</a>
+        </td>
+        <%= raw(make_col_back(max_col, list)) %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

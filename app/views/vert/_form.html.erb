@@ -1,0 +1,19 @@
+<%= form_tag('/vert', :method => :post, :class => 'form-inline') do |f| %>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <div class="field">
+    <%= label :vert, :path %><br>
+    <%= text_field :vert, :path, :value => @path %>
+  </div>
+  <div class="field">
+    <%= label :vert, :name %><br>
+    <%= text_field :vert, :name %>
+  </div>
+  <div class="field">
+    <%= label :vert, :body %><br>
+    <%= text_area :vert, :body %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "追加", :class => 'btn btn-primary btn-sm' %>
+  </div>
+<% end %>
