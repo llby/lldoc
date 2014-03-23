@@ -15,4 +15,4 @@
   </tbody>
 </table>
 
-<%= link_to 'New',  new_vert_path %> |
+<%= link_to 'New', "/vert/new/#{ERB::Util.url_encode(@path)}" %> |
