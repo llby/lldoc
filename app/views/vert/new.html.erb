@@ -7,4 +7,4 @@
   </div>
 <% end %>
 
-<%= link_to 'Back', vert_index_path %>
+<%= link_to 'Back', "/vert/index/#{ERB::Util.url_encode(@path)}" %>

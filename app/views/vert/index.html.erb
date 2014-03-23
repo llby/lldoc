@@ -8,7 +8,11 @@
     <% @files.each do |name| %>
       <tr>
         <td>
-          <a href="/vert/<%= ERB::Util.url_encode("#{@path}/#{File.basename(name)}") %>"><%= name %></a>
+          <%= name %>
+        </td>
+        <td>
+          <%= link_to "Show", "/vert/#{ERB::Util.url_encode("#{@path}/#{File.basename(name)}")}" %> |
+          <%= link_to "削除", "/vert/delete/#{ERB::Util.url_encode("#{@path}/#{File.basename(name)}")}" %>
         </td>
       </tr>
     <% end %>

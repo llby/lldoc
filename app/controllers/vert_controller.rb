@@ -45,4 +45,10 @@ class VertController < ApplicationController
     redirect_to maps_path
   end
 
+  def destroy
+    # TODO: ファイルが存在しない場合はエラーにする
+    @path_f = params[:path_name]
+    File.delete("#{DEFAULT_PATH}/#{@path_f}.txt")
+    redirect_to maps_path
+  end
 end

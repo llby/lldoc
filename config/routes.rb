@@ -7,8 +7,9 @@ Lldoc::Application.routes.draw do
    get 'vert/index/:path' => 'vert#index'
    get 'vert/new/:path' => 'vert#new'
    get 'vert/edit/:path_name' => 'vert#edit'
-  post 'vert/update' => 'vert#update'
    get 'vert/:path_name' => 'vert#show'
+   get 'vert/delete/:path_name' => 'vert#destroy'
+  post 'vert/update' => 'vert#update'
   resources :vert
   resources :maps do
     collection do
