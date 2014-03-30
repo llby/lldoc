@@ -1,5 +1,4 @@
 class VertController < ApplicationController
-  DEFAULT_PATH = "var/1"
 
   def index
     @path = params[:path]

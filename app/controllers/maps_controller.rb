@@ -1,12 +1,7 @@
-require "find"
-require "dir_ext"
-require "json_ext"
-
 class MapsController < ApplicationController
   before_action :set_map, only: [:show, :edit, :update, :destroy]
 
   COMMANDS = [["追加", "0"], ["削除", "1"]]
-  DEFAULT_PATH = "var/1"
 
   # GET /maps
   # GET /maps.json
