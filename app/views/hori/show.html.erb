@@ -1,0 +1,28 @@
+<h1>Hori#show</h1>
+
+<p><%= @path_f %></p>
+
+
+<table class="table table-striped table-hover table-condensed ">
+  <thead>
+    <tr>
+      <% @header.each do |h| %>
+        <th><%= h %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @body.each do |row| %>
+      <tr>
+        <% row.each do |e| %>
+          <td><%= e %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<%= link_to 'Edit', "/hori/edit/#{ERB::Util.url_encode(@path_f)}" %> |
+<%= link_to 'Back', "/hori/index/#{ERB::Util.url_encode(@path)}" %>

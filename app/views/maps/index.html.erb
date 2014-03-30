@@ -58,6 +58,7 @@
             <%= list["name"] %>
           </button>
           <a href="vert/index/<%= ERB::Util.url_encode(list["full"]) %>">＋</a>
+          <a href="hori/index/<%= ERB::Util.url_encode(list["full"]) %>">－</a>
         </td>
         <%= raw(make_col_back(max_col, list)) %>
       </tr>

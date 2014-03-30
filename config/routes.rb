@@ -2,8 +2,18 @@ Lldoc::Application.routes.draw do
 
   resources :samples
 
-#  get "vert/ls"
-#  get "vert/mkdir"
+
+  
+  resources :hori do
+    collection do
+      get 'index/:path' => 'hori#index'
+      get ':path_name'  => 'hori#show'
+      get 'new/:path'   => 'hori#new'
+    end
+  end
+
+
+
    get 'vert/index/:path' => 'vert#index'
    get 'vert/new/:path' => 'vert#new'
    get 'vert/edit/:path_name' => 'vert#edit'

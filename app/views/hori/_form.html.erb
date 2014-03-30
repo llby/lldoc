@@ -1,0 +1,14 @@
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <div class="field">
+    <%= label :hori, :path %><br>
+    <%= text_field :hori, :path, :value => @path %>
+  </div>
+  <div class="field">
+    <%= label :hori, :name %><br>
+    <%= text_field :hori, :name, :value => @name %>
+  </div>
+  <div class="field">
+    <%= label :hori, :body %><br>
+    <%= text_area :hori, :body, :value => @body, :size => "50x10" %>
+  </div>

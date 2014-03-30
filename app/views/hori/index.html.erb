@@ -1,0 +1,22 @@
+<h1>Hori</h1>
+
+<p><%= @path %></p>
+
+
+<table class="table table-striped table-hover table-condensed ">
+  <tbody>
+    <% @files.each do |name| %>
+      <tr>
+        <td>
+          <%= name %>
+        </td>
+        <td>
+          <%= link_to "Show", "/hori/#{ERB::Util.url_encode("#{@path}/#{File.basename(name)}")}" %> |
+          <%= link_to "削除", "/hori/delete/#{ERB::Util.url_encode("#{@path}/#{File.basename(name)}")}" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New', "/hori/new/#{ERB::Util.url_encode(@path)}" %> |
